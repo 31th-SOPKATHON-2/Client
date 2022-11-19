@@ -111,7 +111,7 @@ function QuizIng() {
           {quizScore.map(
             (quiz, idx) => quiz.length !== 0 && <StQuizIcon key={idx} src={quiz} alt="error" />
           )}
-          <StQuizClose src={icon_close} alt="close" />
+          <StQuizClose onClick={handleClose} src={icon_close} alt="close" />
         </StQuizHeaderWrapper>
         <StQuizItemContainer>
           <StQuizTitleWrapper>
