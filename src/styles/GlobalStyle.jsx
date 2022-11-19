@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     display: flex;
     flex-direction: column;
-    max-width: 37.5rem;
+    max-width: 43rem;
     min-height: 100vh;
     margin: 0 auto;
     position: relative;
@@ -40,7 +40,6 @@ const GlobalStyle = createGlobalStyle`
   
   a {
     text-decoration: none;
-    color: ${(props) => props.theme.color.black};
   }
 `;
 
