@@ -2,6 +2,13 @@
 
 솝커톤 2조 클라
 
+## 개발자 소개 및 역할 분배
+
+|                     김형겸                      |                    정재욱                     |                       류성경                        |
+| :---------------------------------------------: | :-------------------------------------------: | :-------------------------------------------------: |
+| [@Hyeongkyeom Kim](https://github.com/Brokyeom) | [@Jaewook Jeong](https://github.com/woogisea) | [@Seonggyeong Ryu](https://github.com/Seong-Gyeong) |
+|                                                 |                                               |                                                     |
+
 ## 협업 방식
 
 ### 1. ⌨️ Code Convention
@@ -38,12 +45,7 @@
     }
     ```
 - API 호출 함수 : api.js에 작성하기
-- 피그마에서 svg를 export해서 `src/assets/icons` 혹은 `src/assets/images`에 저장하고, `src/assets/index.js`에 아래처럼 추가해 사용
-
-  ```js
-  export { default as icSample } from './icons/ic_sample.svg';
-  export { default as imgSample } from './images/img_sample.svg';
-  ```
+- 피그마에서 svg를 export해서 `src/assets/icons` 혹은 `src/assets/images`에 저장.
 
   <br/>
 
