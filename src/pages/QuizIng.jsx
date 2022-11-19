@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import icon_error from '../assets/icon/icon_error.svg';
+import icon_correct from '../assets/icon/icon_correct.svg';
 import icon_close from '../assets/icon/icon_close.svg';
 import icon_quiz1 from '../assets/icon/icon_quiz1.svg';
 import icon_quiz2 from '../assets/icon/icon_quiz2.svg';
@@ -11,6 +12,8 @@ import icon_quiz6 from '../assets/icon/icon_quiz6.svg';
 import icon_quiz7 from '../assets/icon/icon_quiz7.svg';
 import image_quiz from '../assets/image/image_quiz.svg';
 import { theme } from '../styles/theme';
+import { getQuizList } from '../libs/quizAPI';
+import { useNavigate } from 'react-router-dom';
 
 const QUIZ_NUMBER = [
   {
@@ -51,27 +54,54 @@ const QUIZ_NUMBER = [
 ];
 
 function QuizIng() {
+  const [quizScore, setQuizScore] = useState([]);
+  const [score, setScore] = useState(0);
   const [arrIdx, setArrIdx] = useState(0);
+  const [quizList, setQuizList] = useState([]);
+  const navigate = useNavigate();
 
-  const handleCheckAnswer = () => {
+  const handleCheckAnswer = answer => {
+    if (arrIdx === quizList.length - 1) {
+      navigate('/quizEnd');
+    }
+    if (answer === quizList[arrIdx].answerId) {
+      setScore(score + 1);
+      setQuizScore(quizScore.concat(icon_correct));
+    } else {
+      setQuizScore(quizScore.concat(icon_error));
+    }
     setArrIdx(arrIdx + 1);
   };
+
+  useEffect(() => {
+    const handleGetQuizList = async () => {
+      const response = await getQuizList();
+      setQuizList(response.data.quiz);
+    };
+
+    handleGetQuizList();
+  }, []);
+
   return (
     <StQuizIngContainer>
       <StQuizHeaderWrapper>
-        <StQuizIcon src={icon_error} alt="error" />
+        {quizScore.map(
+          (quiz, idx) => quiz.length !== 0 && <StQuizIcon key={idx} src={quiz} alt="error" />
+        )}
         <StQuizClose src={icon_close} alt="close" />
       </StQuizHeaderWrapper>
       <StQuizItemContainer>
         <StQuizTitleWrapper>
           <StQuizNumber src={QUIZ_NUMBER[arrIdx].src} alt="quizNumber" />
-          <StQuizTextWrapper>선생님께 혼난 이정이가 할 말로 적합한 것은?</StQuizTextWrapper>
+          <StQuizTextWrapper>{quizList[arrIdx]?.question}</StQuizTextWrapper>
         </StQuizTitleWrapper>
         {arrIdx === 6 ? <StQuizImage src={image_quiz} /> : <StQuizWrapper />}
         <StQuizListWrapper>
-          <StQuizItemButton onClick={handleCheckAnswer}>내일 봬요 누나</StQuizItemButton>
-          <StQuizItemButton>내 눈에 봬는게 없누</StQuizItemButton>
-          <StQuizItemButton>내 봬스트는 누가바</StQuizItemButton>
+          {quizList[arrIdx]?.examples?.map(example => (
+            <StQuizItemButton onClick={() => handleCheckAnswer(example.id)} key={example.id}>
+              {example.text}
+            </StQuizItemButton>
+          ))}
         </StQuizListWrapper>
       </StQuizItemContainer>
     </StQuizIngContainer>
