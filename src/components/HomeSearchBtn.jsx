@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { theme } from '../styles/theme.js';
 import searchIcon from '../assets/icon/icon_search.svg';
 
-export default function HomeBtn() {
+export default function HomeBtn({ onClick }) {
   return (
-    <StHomeSearchBtn type="button">
+    <StHomeSearchBtn type="button" onClick={onClick}>
       <StHomeSearchIcon src={searchIcon} alt="검색 버튼 이미지" />
     </StHomeSearchBtn>
   );
