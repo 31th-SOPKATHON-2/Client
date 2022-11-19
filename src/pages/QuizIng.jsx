@@ -14,6 +14,7 @@ import image_quiz from '../assets/image/image_quiz.svg';
 import { theme } from '../styles/theme';
 import { getQuizList } from '../libs/quizAPI';
 import { useNavigate } from 'react-router-dom';
+import QuizModal from '../components/QuizModal';
 
 const QUIZ_NUMBER = [
   {
@@ -58,6 +59,8 @@ function QuizIng() {
   const [score, setScore] = useState(0);
   const [arrIdx, setArrIdx] = useState(0);
   const [quizList, setQuizList] = useState([]);
+  const [correct, setCorrect] = useState();
+  const [isModal, setisModal] = useState();
   const navigate = useNavigate();
 
   const handleCheckAnswer = answer => {
@@ -66,11 +69,14 @@ function QuizIng() {
     }
     if (answer === quizList[arrIdx].answerId) {
       setScore(score + 1);
+      setCorrect(true);
       setQuizScore(quizScore.concat(icon_correct));
     } else {
+      setCorrect(false);
       setQuizScore(quizScore.concat(icon_error));
     }
     setArrIdx(arrIdx + 1);
+    setisModal(true);
   };
 
   useEffect(() => {
@@ -82,29 +88,36 @@ function QuizIng() {
     handleGetQuizList();
   }, []);
 
+  setTimeout(() => {
+    setisModal(false);
+  }, '1000');
+
   return (
-    <StQuizIngContainer>
-      <StQuizHeaderWrapper>
-        {quizScore.map(
-          (quiz, idx) => quiz.length !== 0 && <StQuizIcon key={idx} src={quiz} alt="error" />
-        )}
-        <StQuizClose src={icon_close} alt="close" />
-      </StQuizHeaderWrapper>
-      <StQuizItemContainer>
-        <StQuizTitleWrapper>
-          <StQuizNumber src={QUIZ_NUMBER[arrIdx].src} alt="quizNumber" />
-          <StQuizTextWrapper>{quizList[arrIdx]?.question}</StQuizTextWrapper>
-        </StQuizTitleWrapper>
-        {arrIdx === 6 ? <StQuizImage src={image_quiz} /> : <StQuizWrapper />}
-        <StQuizListWrapper>
-          {quizList[arrIdx]?.examples?.map(example => (
-            <StQuizItemButton onClick={() => handleCheckAnswer(example.id)} key={example.id}>
-              {example.text}
-            </StQuizItemButton>
-          ))}
-        </StQuizListWrapper>
-      </StQuizItemContainer>
-    </StQuizIngContainer>
+    <>
+      {isModal && <QuizModal correct={correct} />}
+      <StQuizIngContainer>
+        <StQuizHeaderWrapper>
+          {quizScore.map(
+            (quiz, idx) => quiz.length !== 0 && <StQuizIcon key={idx} src={quiz} alt="error" />
+          )}
+          <StQuizClose src={icon_close} alt="close" />
+        </StQuizHeaderWrapper>
+        <StQuizItemContainer>
+          <StQuizTitleWrapper>
+            <StQuizNumber src={QUIZ_NUMBER[arrIdx].src} alt="quizNumber" />
+            <StQuizTextWrapper>{quizList[arrIdx]?.question}</StQuizTextWrapper>
+          </StQuizTitleWrapper>
+          {arrIdx === 6 ? <StQuizImage src={image_quiz} /> : <StQuizWrapper />}
+          <StQuizListWrapper>
+            {quizList[arrIdx]?.examples?.map(example => (
+              <StQuizItemButton onClick={() => handleCheckAnswer(example.id)} key={example.id}>
+                {example.text}
+              </StQuizItemButton>
+            ))}
+          </StQuizListWrapper>
+        </StQuizItemContainer>
+      </StQuizIngContainer>
+    </>
   );
 }
 
