@@ -7,7 +7,7 @@
 |                     김형겸                      |                    정재욱                     |                       류성경                        |
 | :---------------------------------------------: | :-------------------------------------------: | :-------------------------------------------------: |
 | [@Hyeongkyeom Kim](https://github.com/Brokyeom) | [@Jaewook Jeong](https://github.com/woogisea) | [@Seonggyeong Ryu](https://github.com/Seong-Gyeong) |
-|                                                 |                                               |                                                     |
+|                    형겸담당                     |                   재욱담당                    |                      성경담당                       |
 
 ## 협업 방식
 
@@ -66,10 +66,8 @@
 
 ## 3. Git Branch Strategy
 
-- github flow
 - **main - feature**
   - main : 배포
-  - develop : 개발된 기능을 통합하는 브랜치
   - feat/[기능] : 기능별로 개발을 진행하는 브랜치
 - 브랜치명 : **feat/페이지 지름-구현할 기능** (ex. 카페고리 페이지의 뷰 작업일 경우 _category-ui_, 홈 화면의 베스트 상품 작업일 경우 _home-bestitem_)
 - 뷰 구현 : **feat/[기능]-ui**
