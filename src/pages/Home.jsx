@@ -4,8 +4,10 @@ import { theme } from '../styles/theme.js';
 import HomeHeader from '../components/HomeHeader.jsx';
 import HomeSearchBtn from '../components/HomeSearchBtn.jsx';
 import HomeQuizBtn from '../components/HomeQuizBtn.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
   const [userInput, setUserInput] = useState('');
 
   const handleChange = e => {
@@ -15,7 +17,7 @@ function Home() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log(userInput);
+    navigate(`/result/${userInput}`);
     e.target.reset();
   };
 
@@ -24,7 +26,7 @@ function Home() {
       <HomeHeader />
       <StHomeSearchContainer onChange={handleChange} onSubmit={handleSubmit}>
         <StHomeSearchInput placeholder="단어 입력하던지ㅋ" />
-        <HomeSearchBtn />
+        <HomeSearchBtn onClick={handleSubmit} />
       </StHomeSearchContainer>
 
       <HomeQuizBtn type="button" />

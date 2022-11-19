@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../styles/theme.js';
+import { Link } from 'react-router-dom';
 
 export default function HomeQuizBtn() {
-  return <StQuizBtn>잼민 QUIZ 풀러가기 &gt; </StQuizBtn>;
+  return (
+    <Link to="/quizstart">
+      <StQuizBtn>잼민 QUIZ 풀러가기 &gt; </StQuizBtn>
+    </Link>
+  );
 }
 
 const StQuizBtn = styled.button`
