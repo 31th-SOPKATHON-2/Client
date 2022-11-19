@@ -54,7 +54,7 @@ const StHomeSearchContainer = styled.form`
 `;
 
 const StHomeSearchInput = styled.input`
-  width: 25.3rem;
+  padding: 1rem 9.8rem 0.9rem 1.7rem;
   height: 4.4rem;
 
   border: 2px solid ${theme.colors.grey200};
