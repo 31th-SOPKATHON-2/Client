@@ -19,7 +19,7 @@ export default function HomeResult() {
           <StMeaingOutputDesc>어쩌구저쩌구</StMeaingOutputDesc>
         </StMeaningContainer>
         <StExampleWrap>
-          <CopyToClipboard text={'개킹받네'} onCopy={() => alert('메세지가 복사되었습니다')}>
+          <CopyToClipboard text={'개킹받네'} onCopy={() => alert('퍼가요~♡')}>
             <StExample>개킹받네</StExample>
           </CopyToClipboard>
         </StExampleWrap>
@@ -98,6 +98,7 @@ const StExampleWrap = styled.div`
 `;
 
 const StExample = styled.div`
+  width: 30.5rem;
   margin-left: 1.6rem;
 
   color: ${theme.colors.black};
