@@ -28,13 +28,11 @@ export default function HomeResult() {
 
   const handleChange = e => {
     setInputValue(e.target.value);
-    console.log(inputValue);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     navigate(`/result/${inputValue}`);
-    console.log(`/result/${inputValue}`);
   };
 
   return (
@@ -87,7 +85,8 @@ const StSearchedContainer = styled.form`
 `;
 
 const StSearchedWord = styled.input`
-  width: 253px;
+  min-width: 25.3rem;
+  padding-left: 1.7rem;
   height: 44px;
 
   font-weight: ${theme.fontWeight.medium};
