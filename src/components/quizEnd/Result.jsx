@@ -47,7 +47,6 @@ function Result({ resultList }) {
       <StResultTitle src={title} alt="결과타이틀" />
       <span>{desctitle}</span>
       <StDescriptionContainer>
-        <h2>잼민이 Type 설명</h2>
         <p>{descvalue1}</p>
         <p>{descvalue2}</p>
       </StDescriptionContainer>
@@ -103,14 +102,6 @@ const StDescriptionContainer = styled.div`
   align-items: center;
 
   margin-bottom: 8rem;
-
-  & > h2 {
-    margin-bottom: 1.6rem;
-
-    color: ${theme.colors.black};
-    font-weight: ${theme.fontWeight.medium};
-    font-size: ${theme.fontSize.heading5};
-  }
 
   & > p {
     text-align: center;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../styles/theme';
 import Result from '../components/quizEnd/Result';
 import resultTitleOne from '../assets/image/img_result-title-one.svg';
 import resultImgOne from '../assets/image/img_result-img-one.svg';
