@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { theme } from '../styles/theme.js';
 
 export default function HomeQuizBtn() {
-  return <QuizBtn>잼민 QUIZ 풀러가기 &gt; </QuizBtn>;
+  return <StQuizBtn>잼민 QUIZ 풀러가기 &gt; </StQuizBtn>;
 }
 
-const QuizBtn = styled.button`
+const StQuizBtn = styled.button`
   width: 16rem;
   height: 2.5rem;
 

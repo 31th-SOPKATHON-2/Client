@@ -4,13 +4,13 @@ import searchIcon from '../assets/icon/icon_search.svg';
 
 export default function HomeBtn() {
   return (
-    <HomeSearchBtn type="button">
-      <HomeSearchIcon src={searchIcon} alt="검색 버튼 이미지" />
-    </HomeSearchBtn>
+    <StHomeSearchBtn type="button">
+      <StHomeSearchIcon src={searchIcon} alt="검색 버튼 이미지" />
+    </StHomeSearchBtn>
   );
 }
 
-const HomeSearchBtn = styled.button`
+const StHomeSearchBtn = styled.button`
   width: 44px;
   height: 44px;
 
@@ -25,7 +25,7 @@ const HomeSearchBtn = styled.button`
   margin-left: 8px;
 `;
 
-const HomeSearchIcon = styled.img`
+const StHomeSearchIcon = styled.img`
   width: 24px;
   height: 24px;
 `;

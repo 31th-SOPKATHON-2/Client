@@ -4,14 +4,14 @@ import homeLogo from '../assets/image/homeLogo.svg';
 
 export default function HomeHeader() {
   return (
-    <HomeHeaderContainer>
-      <HomeHeaderImage src={homeLogo} alt="로고" />
-      <HomeHeaderDesc>세상 모든 잼민어를 여기서 찾아보세요</HomeHeaderDesc>
-    </HomeHeaderContainer>
+    <StHomeHeaderContainer>
+      <StHomeHeaderImage src={homeLogo} alt="로고" />
+      <StHomeHeaderDesc>세상 모든 잼민어를 여기서 찾아보세요</StHomeHeaderDesc>
+    </StHomeHeaderContainer>
   );
 }
 
-const HomeHeaderContainer = styled.div`
+const StHomeHeaderContainer = styled.div`
   width: 22.9rem;
   height: 22.3rem;
 
@@ -23,12 +23,12 @@ const HomeHeaderContainer = styled.div`
   align-items: center;
 `;
 
-const HomeHeaderImage = styled.img`
+const StHomeHeaderImage = styled.img`
   width: 20rem;
   height: 20rem;
 `;
 
-const HomeHeaderDesc = styled.div`
+const StHomeHeaderDesc = styled.div`
   height: 2.3rem;
 
   color: ${theme.colors.grey500};
