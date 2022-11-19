@@ -15,6 +15,8 @@ import { theme } from '../styles/theme';
 import { getQuizList } from '../libs/quizAPI';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from '../components/QuizModal';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { scoreState } from '../core/atom';
 
 const QUIZ_NUMBER = [
   {
@@ -56,12 +58,15 @@ const QUIZ_NUMBER = [
 
 function QuizIng() {
   const [quizScore, setQuizScore] = useState([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useRecoilState(scoreState);
   const [arrIdx, setArrIdx] = useState(0);
   const [quizList, setQuizList] = useState([]);
   const [correct, setCorrect] = useState();
   const [isModal, setisModal] = useState();
   const navigate = useNavigate();
+  const scoreReset = useResetRecoilState(scoreState);
+
+  console.log(score);
 
   const handleCheckAnswer = answer => {
     if (arrIdx === quizList.length - 1) {
@@ -77,6 +82,12 @@ function QuizIng() {
     }
     setArrIdx(arrIdx + 1);
     setisModal(true);
+    console.log(score);
+  };
+
+  const handleClose = () => {
+    scoreReset();
+    navigate('/');
   };
 
   useEffect(() => {

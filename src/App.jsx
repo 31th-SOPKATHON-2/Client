@@ -2,12 +2,15 @@ import Router from './components/common/Router';
 import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
     <ThemeProvider theme={{ ...theme }}>
-      <Router />
-      <GlobalStyle />
+      <RecoilRoot>
+        <Router />
+        <GlobalStyle />
+      </RecoilRoot>
     </ThemeProvider>
   );
 }
