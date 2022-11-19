@@ -1,14 +1,28 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { theme } from '../styles/theme.js';
 import HomeHeader from '../components/HomeHeader.jsx';
 import HomeSearchBtn from '../components/HomeSearchBtn.jsx';
 import HomeQuizBtn from '../components/HomeQuizBtn.jsx';
 
 function Home() {
+  const [userInput, setUserInput] = useState('');
+
+  const handleChange = e => {
+    setUserInput(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(userInput);
+    e.target.reset();
+  };
+
   return (
     <StHomeContainer>
       <HomeHeader />
-      <StHomeSearchContainer>
+      <StHomeSearchContainer onChange={handleChange} onSubmit={handleSubmit}>
         <StHomeSearchInput placeholder="단어 입력하던지ㅋ" />
         <HomeSearchBtn />
       </StHomeSearchContainer>
@@ -31,7 +45,7 @@ const StHomeContainer = styled.section`
   }
 `;
 
-const StHomeSearchContainer = styled.div`
+const StHomeSearchContainer = styled.form`
   display: flex;
 
   margin-top: 3.1rem;
