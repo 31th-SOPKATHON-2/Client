@@ -1,30 +1,48 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { scoreState } from '../../core/atom';
+import closeIcon from '../../assets/icon/icon_close.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Result({ resultList }) {
+  const navigate = useNavigate();
   const [score, setScore] = useState(0);
   const { img, title, desctitle, descvalue1, descvalue2 } = resultList[score];
-  let result = 7;
+  let quizResult = useRecoilValue(scoreState);
+  const scoreReset = useResetRecoilState(scoreState);
 
   useEffect(() => {
     handleScore();
+    console.log(quizResult);
   }, []);
 
   const handleScore = () => {
-    if (result === 0) {
-      setScore(3);
-    } else if (result > 0 && result < 4) {
-      setScore(2);
-    } else if (result > 3 && result < 7) {
-      setScore(1);
-    } else {
+    if (quizResult === 7) {
       setScore(0);
+    } else if (quizResult > 0 && quizResult < 4) {
+      setScore(2);
+    } else if (quizResult > 3 && quizResult < 7) {
+      setScore(1);
+    } else if (quizResult === 0) {
+      setScore(3);
     }
+  };
+
+  const handleReset = () => {
+    scoreReset();
+    navigate('/quizIng');
+  };
+
+  const handleClose = () => {
+    scoreReset();
+    navigate('/');
   };
 
   return (
     <StResultContainer>
+      <StCloseIcon src={closeIcon} alt="닫기버튼" onClick={handleClose} />
       <h1>당신의 정신연령은</h1>
       <StResultImg src={img} alt="결과이미지" />
       <StResultTitle src={title} alt="결과타이틀" />
@@ -34,6 +52,7 @@ function Result({ resultList }) {
         <p>{descvalue1}</p>
         <p>{descvalue2}</p>
       </StDescriptionContainer>
+      <StRestartBtn onClick={handleReset}>다시하기</StRestartBtn>
     </StResultContainer>
   );
 }
@@ -61,6 +80,10 @@ const StResultContainer = styled.div`
     font-size: ${theme.fontSize.body2};
     line-height: 150%;
   }
+`;
+
+const StCloseIcon = styled.img`
+  margin: 7.4rem 3rem 5.4rem 32.1rem;
 `;
 
 const StResultImg = styled.img`
@@ -96,4 +119,17 @@ const StDescriptionContainer = styled.div`
     font-size: ${theme.fontSize.body2};
     line-height: 150%;
   }
+`;
+
+const StRestartBtn = styled.button`
+  width: 17.9rem;
+  height: 5.2rem;
+
+  background-color: ${theme.colors.jemminiBlue};
+  border-radius: ${theme.radius.radius};
+
+  color: white;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSize.heading5};
+  line-height: 140%;
 `;

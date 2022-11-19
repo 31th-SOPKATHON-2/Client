@@ -14,6 +14,8 @@ import image_quiz from '../assets/image/image_quiz.svg';
 import { theme } from '../styles/theme';
 import { getQuizList } from '../libs/quizAPI';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { scoreState } from '../core/atom';
 
 const QUIZ_NUMBER = [
   {
@@ -55,10 +57,13 @@ const QUIZ_NUMBER = [
 
 function QuizIng() {
   const [quizScore, setQuizScore] = useState([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useRecoilState(scoreState);
   const [arrIdx, setArrIdx] = useState(0);
   const [quizList, setQuizList] = useState([]);
   const navigate = useNavigate();
+  const scoreReset = useResetRecoilState(scoreState);
+
+  console.log(score);
 
   const handleCheckAnswer = answer => {
     if (arrIdx === quizList.length - 1) {
@@ -66,11 +71,18 @@ function QuizIng() {
     }
     if (answer === quizList[arrIdx].answerId) {
       setScore(score + 1);
+
       setQuizScore(quizScore.concat(icon_correct));
     } else {
       setQuizScore(quizScore.concat(icon_error));
     }
     setArrIdx(arrIdx + 1);
+    console.log(score);
+  };
+
+  const handleClose = () => {
+    scoreReset();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -88,7 +100,7 @@ function QuizIng() {
         {quizScore.map(
           (quiz, idx) => quiz.length !== 0 && <StQuizIcon key={idx} src={quiz} alt="error" />
         )}
-        <StQuizClose src={icon_close} alt="close" />
+        <StQuizClose onClick={handleClose} src={icon_close} alt="close" />
       </StQuizHeaderWrapper>
       <StQuizItemContainer>
         <StQuizTitleWrapper>
