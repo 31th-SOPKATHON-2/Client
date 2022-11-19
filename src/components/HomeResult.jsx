@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { theme } from '../styles/theme.js';
 import HomeHeader from './HomeHeader.jsx';
 // import HomeSearchBtn from './HomeSearchBtn.jsx';
+import React, { useRef } from 'react';
 import HomeQuizBtn from './HomeQuizBtn.jsx';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export default function HomeResult() {
   return (
@@ -17,7 +19,9 @@ export default function HomeResult() {
           <StMeaingOutputDesc>어쩌구저쩌구</StMeaingOutputDesc>
         </StMeaningContainer>
         <StExampleWrap>
-          <StExample>개킹받네</StExample>
+          <CopyToClipboard text={'개킹받네'} onCopy={() => alert('메세지가 복사되었습니다')}>
+            <StExample>개킹받네</StExample>
+          </CopyToClipboard>
         </StExampleWrap>
         <StExampleMessage>예문 누르면 복사됌 ㅋ</StExampleMessage>
       </StResultContainer>
