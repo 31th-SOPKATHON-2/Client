@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../styles/theme';
 
 function Home() {
   return (
@@ -10,4 +11,10 @@ function Home() {
 
 export default Home;
 
-const StHomeContainer = styled.section``;
+const StHomeContainer = styled.section`
+  & > h1 {
+    color: ${theme.colors.jemminiBlue};
+    font-weight: ${theme.fontWeight.medium};
+    font-size: ${theme.fontSize.heading1};
+  }
+`;
