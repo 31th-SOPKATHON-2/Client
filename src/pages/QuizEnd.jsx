@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import closeIcon from '../assets/icon/icon_close.svg';
 import { theme } from '../styles/theme';
 import Result from '../components/quizEnd/Result';
-import { useNavigate } from 'react-router-dom';
 import resultTitleOne from '../assets/image/img_result-title-one.svg';
 import resultImgOne from '../assets/image/img_result-img-one.svg';
 import resultTitleTwo from '../assets/image/img_result-title-two.svg';
@@ -13,7 +11,6 @@ import resultTitleFour from '../assets/image/img_result-title-four.svg';
 import resultImgFour from '../assets/image/img_result-img-four.svg';
 
 function QuizEnd() {
-  const navigate = useNavigate();
   const resultList = [
     {
       img: resultImgOne,
@@ -47,9 +44,7 @@ function QuizEnd() {
 
   return (
     <StQuizEndContainer>
-      <StCloseIcon src={closeIcon} alt="닫기버튼" onClick={() => navigate('/')} />
       <Result resultList={resultList} />
-      <StRestartBtn onClick={() => navigate('/quizIng')}>다시하기</StRestartBtn>
     </StQuizEndContainer>
   );
 }
@@ -61,21 +56,4 @@ const StQuizEndContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const StCloseIcon = styled.img`
-  margin: 7.4rem 3rem 5.4rem 32.1rem;
-`;
-
-const StRestartBtn = styled.button`
-  width: 17.9rem;
-  height: 5.2rem;
-
-  background-color: ${theme.colors.jemminiBlue};
-  border-radius: ${theme.radius.radius};
-
-  color: white;
-  font-weight: ${theme.fontWeight.medium};
-  font-size: ${theme.fontSize.heading5};
-  line-height: 140%;
 `;
