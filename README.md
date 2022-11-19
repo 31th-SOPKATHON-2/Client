@@ -40,7 +40,7 @@
 | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/97586683?v=4" width="130" height="130"/> | <img src="https://avatars.githubusercontent.com/u/69576360?v=4" width="130" height="130"/> | <img src="https://avatars.githubusercontent.com/u/63237389?s=400&u=28d88f3bd3e6e34c507088bb6bdd867d2acf67eb&v=4" width="130" height="130"/> |
 |                      [@Hyeongkyeom Kim](https://github.com/Brokyeom)                       |                       [@Jaewook Jeong](https://github.com/woogisea)                        |                                             [@Seonggyeong Ryu](https://github.com/Seong-Gyeong)                                             |
-|                                          형겸담당                                          |                                          재욱담당                                          |                                                                  성경담당                                                                   |
+|                      퀴즈 시작 뷰<br/>퀴즈 결과 뷰<br/>퀴즈 정답 모달                      |                               퀴즈 목록 뷰<br/>퀴즈 목록 api                               |                                                              홈 뷰<br/>홈 api                                                               |
 
 <br/>
 
@@ -81,8 +81,8 @@
   - 색상은 항상 아래처럼 ThemeProvider 활용해서 설정
     ```jsx
     button {
-      background-color: ${(props) => props.theme.colors.blue01};
-      color: ${(props) => props.theme.colors.gray700};
+      background-color: ${theme.colors.zemminiBlue};
+      color: ${theme.colors.gray700};
     }
     ```
 - API 호출 함수 : api.js에 작성하기
@@ -110,6 +110,8 @@
 - **main - feature**
   - main : 배포
   - feat/[기능] : 기능별로 개발을 진행하는 브랜치
+- 이슈 생성: **[브랜치명] 작업 내용 요약**
+  - task 목록 작성
 - 브랜치명 : **feat/페이지 지름-구현할 기능** (ex. 카페고리 페이지의 뷰 작업일 경우 _category-ui_, 홈 화면의 베스트 상품 작업일 경우 _home-bestitem_)
 - 뷰 구현 : **feat/[기능]-ui**
 - api 연결 : **[기능]-api**
