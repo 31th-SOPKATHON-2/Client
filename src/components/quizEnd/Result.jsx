@@ -15,7 +15,6 @@ function Result({ resultList }) {
 
   useEffect(() => {
     handleScore();
-    console.log(quizResult);
   }, []);
 
   const handleScore = () => {

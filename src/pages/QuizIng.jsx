@@ -66,8 +66,6 @@ function QuizIng() {
   const navigate = useNavigate();
   const scoreReset = useResetRecoilState(scoreState);
 
-  console.log(score);
-
   const handleCheckAnswer = answer => {
     if (arrIdx === quizList.length - 1) {
       navigate('/quizEnd');
@@ -82,7 +80,6 @@ function QuizIng() {
     }
     setArrIdx(arrIdx + 1);
     setisModal(true);
-    console.log(score);
   };
 
   const handleClose = () => {
